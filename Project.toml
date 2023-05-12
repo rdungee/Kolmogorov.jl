@@ -1,0 +1,10 @@
+name = "AOAtmospheres"
+uuid = "c195fee4-4f57-45b3-9b99-8e2097e234b2"
+authors = ["Ryan Dungee <ryan.dungee@utoronto.ca>"]
+version = "0.0.0"
+
+[deps]
+
+
+[compat]
+julia = "1.6.7"
