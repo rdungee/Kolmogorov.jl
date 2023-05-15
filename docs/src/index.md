@@ -1,13 +1,13 @@
 ```@meta
-CurrentModule = AOAtmospheres
-DocTestSetup = :(using AOAtmospheres)
+CurrentModule = Kolmogorov
+DocTestSetup = :(using Kolmogorov)
 ```
 
-# AOAtmospheres.jl
+# Kolmogorov.jl
 
-[![GitHub](https://img.shields.io/badge/Code-GitHub-black.svg)](https://github.com/rdungee/AOAtmospheres.jl)
-[![Build status](https://github.com/rdungee/AOAtmospheres.jl/workflows/CI/badge.svg?branch=main)](https://github.com/rdungee/AOAtmospheres.jl/actions)
-[![Coverage](http://codecov.io/github/rdungee/AOAtmospheres.jl/coverage.svg)](http://codecov.io/github/rdungee/AOAtmospheres.jl)
+[![GitHub](https://img.shields.io/badge/Code-GitHub-black.svg)](https://github.com/rdungee/Kolmogorov.jl)
+[![Build status](https://github.com/rdungee/Kolmogorov.jl/workflows/CI/badge.svg?branch=main)](https://github.com/rdungee/Kolmogorov.jl/actions)
+[![Coverage](http://codecov.io/github/rdungee/Kolmogorov.jl/coverage.svg)](http://codecov.io/github/rdungee/Kolmogorov.jl)
 
 ## Installation
 
