@@ -10,8 +10,8 @@ Specifically, the output of the inverse FFT will be a random field which has the
 
 ``Phi_n\\left(\\kappa\\right) = 0.033 C_n^2 \\kappa^{-11/3}``
 
-where ``\\kappa = 2\\pi\\left(f_x\\hat{i} + f_y\\hat{j}\\right)``"""
-
+where ``\\kappa = 2\\pi\\left(f_x\\hat{i} + f_y\\hat{j}\\right)``
+"""
 function kolmogorovfilter(frequencies::AbstractVector{AbstractFloat},
                           Cn_squared::AbstractFloat,
                           deltafreq::AbstractFloat)

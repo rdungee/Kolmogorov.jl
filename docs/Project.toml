@@ -1,5 +1,6 @@
 [deps]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+Kolmogorov = "a24721c7-e67f-4b32-8f0b-7b8e6fb5aed9"
 
 [compat]
 Documenter = "0.27"
