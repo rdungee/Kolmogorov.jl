@@ -5,6 +5,6 @@
 module Kolmogorov
 
 include("parameters.jl")
-include("filters.jl")
+include("powerspectraldensities.jl")
 
 end # module

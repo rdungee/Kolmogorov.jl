@@ -7,5 +7,7 @@ Here we go through the standard set of atmosphere statistics which are commonly 
 This page is under construction, thank you for your patience.
 
 ```@docs
-Kolmogorov.kolmogorovfilter
+Kolmogorov.kolmogorov_psd
+Kolmogorov.vonkarman_psd
+Kolmogorov.modified_vonkarman_psd
 ```
