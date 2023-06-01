@@ -1,6 +1,6 @@
 pages = [
     "Home" => "index.md",
-    "Implmentation Details" => [
+    "Implementation Details" => [
         "Types" => "implementation/types.md"
     ],
     "Atmospheric Parameters" => [
