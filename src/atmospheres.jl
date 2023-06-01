@@ -21,6 +21,7 @@ struct AtmosphericLayer
     windvector::Vector{AbstractFloat}
     phase::Matrix{Union{Complex,AbstractFloat}}
     center::Vector{AbstractFloat}
+    AtmosphericLayer(pixsize, alt, wv, dims::Tuple{Integer, Integer}, center) = new(pixsize, alt, wv, zeros(Complex, dims...), center)
     AtmosphericLayer(pixsize, alt, wv, dims::Tuple{Integer, Integer}) = new(pixsize, alt, wv, zeros(Complex, dims...), [0.0, 0.0])
     AtmosphericLayer(pixsize, alt, wv, arr) = new(pixsize, alt, wv, arr, [0.0, 0.0])
 end
