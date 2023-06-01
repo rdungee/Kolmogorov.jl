@@ -4,6 +4,7 @@
 """
 module Kolmogorov
 
+include("atmospheres.jl")
 include("parameters.jl")
 include("powerspectraldensities.jl")
 
