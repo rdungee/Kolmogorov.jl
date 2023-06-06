@@ -48,7 +48,7 @@ function kolmogorov_filter!(noise::Matrix{<:Complex},
             if (i == 1) & (j == 1)
                 noise[j,i] = 0.0 + 0.0im
             else
-                noise[j,i] = sqrt(0.023 * r0^(-5/3) * f2^(-11/6)) / pixelsize
+                noise[j,i] = noise[j,i] * sqrt(0.023 * r0^(-5/3) * f2^(-11/6)) / pixelsize
             end
         end
     end
