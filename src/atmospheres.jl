@@ -18,9 +18,9 @@ If real, these numbers are interpreted as the phase itself, if complex they are 
 struct AtmosphericLayer
     pixelsize::AbstractFloat
     altitude::AbstractFloat
-    windvector::Vector{AbstractFloat}
-    phase::Matrix{Union{Complex,AbstractFloat}}
-    center::Vector{AbstractFloat}
+    windvector::Vector{<:AbstractFloat}
+    phase::Matrix{Union{<:Complex,<:AbstractFloat}}
+    center::Vector{<:AbstractFloat}
     AtmosphericLayer(pixsize, alt, wv, dims::Tuple{Integer, Integer}, center) = new(pixsize, alt, wv, zeros(Complex, dims...), center)
     AtmosphericLayer(pixsize, alt, wv, dims::Tuple{Integer, Integer}) = new(pixsize, alt, wv, zeros(Complex, dims...), [0.0, 0.0])
     AtmosphericLayer(pixsize, alt, wv, arr) = new(pixsize, alt, wv, arr, [0.0, 0.0])
@@ -34,6 +34,22 @@ Operations which evolve the atmosphere will loop over all the layers within a gi
 """
 struct Atmosphere
     layers::Vector{AtmosphericLayer}
+end
+
+function Base.size(atm::Atmosphere)
+    return size(atm.layers)
+end
+
+function Base.getindex(atm::Atmosphere, I::Vararg{Int,1})
+    return atm.layers[I...]
+end
+
+function Base.setindex!(atm::Atmosphere, value, I::Vararg{Int,1})
+    return atm.layers[I...] = values
+end
+
+function Base.length(atm::Atmosphere)
+    return length(atm.layers)
 end
 
 
@@ -59,9 +75,9 @@ Constructs a full atmosphere where each atmospheric layer has a phase screen wit
 function KolmogorovAtmosphere(Cn2::AbstractFloat,
                               pixelsize::AbstractFloat,
                               screensize::AbstractFloat, # Alternate version with integer number setting the number of pixels instead
-                              altitudes::Vector{AbstractFloat},
-                              windvectors::Matrix{AbstractFloat}, # Alternate version with speed and direction as a compass direction in degrees?
-                              layerstrengths::Vector{AbstractFloat},
+                              altitudes::Vector{<:AbstractFloat},
+                              windvectors::Matrix{<:AbstractFloat}, # Alternate version with speed and direction as a compass direction in degrees?
+                              layerstrengths::Vector{<:AbstractFloat},
                               phasetype::Symbol)
     # First, a few setup steps, create the Atmosphere to populate with layers
     atmos = Atmosphere(Vector{AtmosphericLayer}(undef, nlayers))

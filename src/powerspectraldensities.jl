@@ -1,7 +1,7 @@
 using FFTW
 
 """
-    kolmogorov_psd(frequencies::AbstractVector{AbstractFloat},
+    kolmogorov_psd(frequencies::AbstractVector{<:AbstractFloat},
                    Cn_squared::AbstractFloat)
 
 Generates the 2D Kolmogorov power spectral density (PSD) with a given ``C_n^2`` value which determines the overall strength.
@@ -14,7 +14,7 @@ The Kolmogorov PSD is defined as:
 
 where ``\\vec{k} = 2\\pi\\left(f_x \\: \\hat{i} + f_y \\: \\hat{j}\\right)`` is the angular spatial frequency in radians/meter
 """
-function kolmogorov_psd(frequencies::AbstractVector{AbstractFloat},
+function kolmogorov_psd(frequencies::AbstractVector{<:AbstractFloat},
                         Cn_squared::AbstractFloat)
     psd = zeros((length(frequencies), length(frequencies)))
     for (i, fx) in enumerate(frequencies)
@@ -28,7 +28,7 @@ function kolmogorov_psd(frequencies::AbstractVector{AbstractFloat},
 end
 
 """
-    kolmogorov_filter!(noise::Matrix{Complex},
+    kolmogorov_filter!(noise::Matrix{<:Complex},
                        pixelsize::AbstractFloat,
                        r0::AbstractFloat)
 
@@ -37,7 +37,7 @@ Edits the matrix `noise` in place, and needs the spatial size of one pixel (`pix
 `noise` is assumed to be in the standard 2D FFT ordering (e.g., `noise[1,1]` represents the 0th frequency/mean value of noise)
 Assumes that `noise` is a square matrix.
 """
-function kolmogorov_filter!(noise::Matrix{Complex},
+function kolmogorov_filter!(noise::Matrix{<:Complex},
                             pixelsize::AbstractFloat,
                             r0::AbstractFloat)
     N, M = size(noise)
@@ -55,7 +55,7 @@ function kolmogorov_filter!(noise::Matrix{Complex},
 end
 
 """
-    vonkarman_psd(frequencies::AbstractVector{AbstractFloat},
+    vonkarman_psd(frequencies::AbstractVector{<:AbstractFloat},
                   Cn_squared::AbstractFloat,
                   L0::AbstractFloat)
 
@@ -88,7 +88,7 @@ function vonkarman_psd(frequencies,
 end
 
 """
-    modified_vonkarman_psd(frequencies::AbstractVector{AbstractFloat},
+    modified_vonkarman_psd(frequencies::AbstractVector{<:AbstractFloat},
                            Cn_squared::AbstractFloat,
                            L0::AbstractFloat,
                            l0::AbstractFloat)
@@ -104,7 +104,7 @@ The von Karman PSD is defined as:
 
 where ``\\vec{k} = 2\\pi\\left(f_x \\: \\hat{i} + f_y \\: \\hat{j}\\right)`` is the angular spatial frequency in radians/meter, ``k_0 = 2\\pi/L_0``, and ``k_m = 5.92/l_0``
 """
-function modified_vonkarman_psd(frequencies::AbstractVector{AbstractFloat},
+function modified_vonkarman_psd(frequencies::AbstractVector{<:AbstractFloat},
                                 Cn_squared::AbstractFloat,
                                 L0::AbstractFloat,
                                 l0::AbstractFloat)
