@@ -4,8 +4,9 @@
 """
 module Kolmogorov
 
-include("atmospheres.jl")
 include("parameters.jl")
+include("noise.jl")
 include("powerspectraldensities.jl")
+include("atmospheres.jl")
 
 end # module
