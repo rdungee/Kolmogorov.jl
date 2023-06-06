@@ -91,7 +91,7 @@ function KolmogorovAtmosphere(Cn2::AbstractFloat,
     # Use the now normalized layer strengths to calculate each layers r0
     r0s = ((r0^(-5/3)) .* layerstrengths).^(-3/5)
     for layer in 1:nlayers
-        Phase = generate_gaussian_hermitian_noise(npix) #TODO, need to figure out specifics of scaling this properly
+        Phase = generate_gaussian_hermitian_noise(npix)
         kolmogorov_filter!(Phase, pixelsize, r0s[layer])
         if phasetype == :complex
             al = AtmosphericLayer(pixelsize, altitudes[layer], windvectors[layer,:], Phase)
