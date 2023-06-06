@@ -10,4 +10,5 @@ Atmospheres are implemented as structs, the `Atmosphere` struct contains a vecto
 ```@docs
 Kolmogorov.AtmosphereicLayer
 Kolmogorov.Atmosphere
+Kolmogorov.KolmogorovAtmosphere
 ```
