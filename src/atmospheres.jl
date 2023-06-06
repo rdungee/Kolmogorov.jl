@@ -38,9 +38,23 @@ end
 
 
 """
-    KolmogorovAtmosphere()
+    KolmogorovAtmosphere(Cn2::AbstractFloat,
+                         pixelsize::AbstractFloat,
+                         screensize::AbstractFloat,
+                         altitudes::Vector{AbstractFloat},
+                         windvectors::Matrix{AbstractFloat},
+                         layerstrengths::Vector{AbstractFloat},
+                         phasetype::Symbol)
+ 
+Constructs a full atmosphere where each atmospheric layer has a phase screen with a Kolmogorov power spectrum.
 
-pass
+ - `Cn2` is the integrated ``C_n^2`` value of the atmosphere, which is internally converted to an ``r_0`` at 500 nanometers.
+ - `pixelsize` is the size of one pixel in the screen, in meters, and `screensize` is the total size of the screen in meters.
+ - `screensize` will be adjusted upwards to ensure an integer number of pixels if needed (so the returned screens will always be `screensize` or larger).
+ - `altitudes` is the height in meters of each layer in the atmosphere, and the number of layers is taken as the length of this vector.
+ - `layerstrengths` is the relative strength of each layer, they will be internally normalized, so a vector such as `[1, 4]` is a valid argument that will yield two layers where one is four times the strength of the other.
+ - `phasetype` is a symbol that is `:real` or `:complex` that denotes how to store the phase in each layer (`:real` means the phase itself will be in the arrays, `:complex` means it will be the Fourier modes of the phase).
+
 """
 function KolmogorovAtmosphere(Cn2::AbstractFloat,
                               pixelsize::AbstractFloat,
