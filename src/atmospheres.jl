@@ -79,29 +79,29 @@ function KolmogorovAtmosphere(Cn2::AbstractFloat,
                               windvectors::Matrix{<:AbstractFloat}, # Alternate version with speed and direction as a compass direction in degrees?
                               layerstrengths::Vector{<:AbstractFloat},
                               phasetype::Symbol)
-    # First, a few setup steps, create the Atmosphere to populate with layers
-    atmos = Atmosphere(Vector{AtmosphericLayer}(undef, nlayers))
-    # And calculate/extract a few parameters
+    # Calculate/extract a few parameters
     nlayers = length(altitudes)
     npix = ceil(Int64, screensize/pixelsize)
     screensize = pixelsize * npix # Adjust the value of screensize to match what we had to round to
     r0 = Cn_squared_to_fried(Cn2)
+    # Create the Atmosphere to populate with layers
+    atmos = Atmosphere(Vector{AtmosphericLayer}(undef, nlayers))
     # Normalize layer strengths so they are fractions 1
     layerstrengths = layerstrengths ./ sum(layerstrengths)
     # Use the now normalized layer strengths to calculate each layers r0
     r0s = ((r0^(-5/3)) .* layerstrengths).^(-3/5)
-    for layer in range(nlayers)
+    for layer in 1:nlayers
         Phase = generate_gaussian_hermitian_noise(npix) #TODO, need to figure out specifics of scaling this properly
         kolmogorov_filter!(Phase, pixelsize, r0s[layer])
         if phasetype == :complex
             al = AtmosphericLayer(pixelsize, altitudes[layer], windvectors[layer,:], Phase)
         elseif phasetype == :real
-            phase = FFTW.bfft(Phase) .* (pixelsize)^2
+            phase = real.(FFTW.bfft(Phase) .* (pixelsize)^2)
             al = AtmosphericLayer(pixelsize, altitudes[layer], windvectors[layer,:], phase)
         else
             #error
         end
-        atmos.layers[layer] = AtmosphericLayer()
+        atmos.layers[layer] = al
     end
-    return 
+    return atmos
 end
