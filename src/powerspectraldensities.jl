@@ -70,11 +70,9 @@ The von Karman PSD is defined as:
 
 where ``\\vec{k} = 2\\pi\\left(f_x \\: \\hat{i} + f_y \\: \\hat{j}\\right)`` is the angular spatial frequency in radians/meter and ``k_0 = 2\\pi/L_0``
 """
-# TODO: need to fix the types, something about AbstractVector isn't right, need to think about the units here too
-# to determine the factors of 2pi and such, probably want to do frequencies which are cycles/meter instead of the radians/meter
-function vonkarman_psd(frequencies,
-                       Cn_squared,
-                       L0)
+function vonkarman_psd(frequencies::AbstractVector{<:AbstractFloat},
+                       Cn_squared::AbstractFloat,
+                       L0::AbstractFloat)
     k0 = 2*π/L0
     psd = zeros((length(frequencies), length(frequencies)))
     for (i, fx) in enumerate(frequencies)
